@@ -24,7 +24,7 @@ h1 {
 	font-size: 32px;
 	text-transform: uppercase;;
 	color: #8713fe;
-	letter-spacing: 15px;
+	letter-spacing: .5em;
 	margin: 0;
 	line-height: 100%;
 }
@@ -42,20 +42,20 @@ h1 {
 	text-align: center;
 }
 
-.container .top {
+.copy--top {
 	position: absolute;
 	text-align: center;
 	top: 0;
 	left: 50%;
 	transform: translateX(-50%);
 }
-.container .left {
+.copy--left {
 	position: absolute;
     top: calc(50% - 35px);
     left: 10px;
     transform: translateX(-50%) rotate(-90deg);
 }
-.container .right {
+.copy--right {
 	position: absolute;
     top: 50%;
     left: calc(100% - 10px);
@@ -67,20 +67,19 @@ h1 {
 	height: auto;
 }
 
-.container button.redo, .container button.actions  {
+.container .redo, .container .actions  {
 	border: none;
 	background: transparent;
 	position: absolute;
 	text-align: center;
 	top: 0;
 }
-
-.container button.redo {
-	left: 50px;
-}
-.container button.actions {
-	right: 50px;
-}
+	.container .redo {
+		left: 50px;
+	}
+	.container .actions {
+		right: 50px;
+	}
 
 
 .imageframe {
@@ -140,20 +139,26 @@ h1 {
 	position: relative;
 	width: 100%;
 	background-color: #7e00ff;
+	z-index: 99;
 }
 
-.menu p {
-	margin: 0;
+.menu--copy {
 	padding: 0 0 15px 0;
+}
+
+.menu--copy p {
+	margin: 0;
 	text-align: center;
 	color: #ccacec;
 	text-transform: uppercase;
 	font-size: 12px;
 	letter-spacing: .2em;
+	display: inline;
 }
 
-.menu p span {
+.menu--copy p span {
 	color: #ffffff;
+	margin-bottom: 15px;
 }
 
 .btn {
@@ -171,6 +176,7 @@ h1 {
 	transform: translate(-50%,-100%);
 	overflow: hidden;
     padding: 10px;
+    z-index: 9;
 }
 
 .btn--upload img {
@@ -204,5 +210,89 @@ h1 {
 
 canvas {
 	display: none;
+}
+
+.show--mobile, .copy--bottom {
+	display: none;
+}
+.show--desktop {
+	display: inline-block;
+}
+
+@media screen and (max-width: 750px) {
+
+	.show--mobile {
+		display: inline-block;
+	}
+	.show--desktop {
+		display: none !important;
+	}
+
+	h1 {
+		font-size: 20px; 
+	}
+
+	.imageframe {
+		width: calc(100% - 15px);
+		height: calc( 100% - 15px);
+	}
+
+	.copy--left, .copy--right {
+		display: none;
+	}
+
+	.copy--top {
+		top: -22px;
+	}
+
+ 	.copy--bottom {
+		position: absolute;
+		display: block;
+	    text-align: center;
+	    width: 90%;
+	    bottom: -22px;
+	    left: 50%;
+	    transform: translateX(-50%);
+	}
+
+	.container .redo, .container .actions {
+		width: 35px;
+		top: -26px;
+	}
+	.container .redo {
+		left: 15px;
+	}
+	.container .actions {
+		right: 15px;	
+	}
+
+	.menu--copy {
+		padding: 0 0 5px 0;
+	}
+
+	.menu--copy p {
+		display: block;
+		padding: 0 0 10px 0;
+	}
+
+	.btn--upload {
+		-webkit-transform: translate(-50%,-75%);
+    	transform: translate(-50%,-75%);
+	}
+	
+}
+
+@media screen and (max-width: 355px) { 
+	
+	.copy--bottom {
+	    bottom: -42px;
+	}
+
+	.container .redo {
+		left: 5px;
+	}
+	.container .actions {
+		right: 5px;	
+	}
 }
 
