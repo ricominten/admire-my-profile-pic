@@ -207,7 +207,17 @@ h1 {
 	margin: 25px 35px;
 	padding: 0;
 	display: inline-block;
+	position: relative;
 }
+
+#twitter-widget-0, #twitter-widget-0 > * {
+	position: absolute !important;
+	left: 0;
+	top: 0;
+	height: 100% !important;
+	width: 100% !important;
+}
+
 
 canvas {
 	display: none;
@@ -296,4 +306,6 @@ canvas {
 		right: 5px;	
 	}
 }
+
+
 
