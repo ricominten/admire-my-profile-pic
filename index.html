@@ -49,7 +49,7 @@
 			<div class="menu js-menu">
 				<button class="btn btn--close js-closeMenu"><img src="img/x.png" alt="Close Menu"></button>
 				<div class="menu--social">
-					<button class="btn btn--social btn--facebook"><img src="img/facebook.png" alt="Facebook"></button>
+					<div class="btn btn--social btn--facebook fb-share-button" data-href="http://ricominten.github.io/admire-my-profile-pic/" data-layout="link" data-mobile-iframe="false"><img src="img/facebook.png" alt="Facebook"></div>
 					<a href="" class="btn btn--social btn--instagram"><img src="img/instagram.png" alt="Instagram"></a>
 					<br class="show--mobile">
 					<a href="https://twitter.com/intent/tweet?url=http://ricominten.github.io/admire-my-profile-pic/&hashtags=admiremyprofilepic"  data-hashtags="admiremyprofilepic" target="_blank" class="btn btn--social btn--twitter"><img src="img/twitter.png" alt="Twitter"></a>
@@ -73,26 +73,15 @@
 	<canvas id="canvas" width="640" height="640"></canvas>
 
 
-	<!-- /*<script>
-	  	window.fbAsyncInit = function() {
-	    	FB.init({
-	      		appId: '211536162517366', // App ID
-				/* channelUrl: '//YOUR-DOMAIN/demos/fb/channel.html', // Channel File */
-		      	status: true, // check login status
-	        	cookie: true, // enable cookies to allow the server to access the session
-		     	xfbml: true, // parse XFBML
-		      	version: 'v2.5'
-	    	});
-	 	};
-
-	  	(function(d, s, id){
-	     	var js, fjs = d.getElementsByTagName(s)[0];
-	     	if (d.getElementById(id)) {return;}
-	     	js = d.createElement(s); js.id = id;
-	     	js.src = "//connect.facebook.net/en_US/sdk.js";
-	     	fjs.parentNode.insertBefore(js, fjs);
-	   	}(document, 'script', 'facebook-jssdk'));
-	</script>*/ -->
+	<div id="fb-root"></div>
+	<script>(function(d, s, id) {
+	  	var js, fjs = d.getElementsByTagName(s)[0];
+	  	if (d.getElementById(id)) return;
+	  	js = d.createElement(s); js.id = id;
+	  	js.src = "//connect.facebook.net/en_GB/sdk.js#xfbml=1&version=v2.6&appId=211536162517366";
+	  	fjs.parentNode.insertBefore(js, fjs);
+		}(document, 'script', 'facebook-jssdk'));
+	</script>
 	
 
 </body>

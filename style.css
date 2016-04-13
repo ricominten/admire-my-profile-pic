@@ -206,6 +206,7 @@ h1 {
 .btn--social {
 	margin: 25px 35px;
 	padding: 0;
+	display: inline-block;
 }
 
 canvas {
