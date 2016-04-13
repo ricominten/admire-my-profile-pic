@@ -67,7 +67,7 @@
 			<div class="menu js-menu">
 				<button class="btn btn--close js-closeMenu"><img src="img/x.png" alt="Close Menu"></button>
 				<div class="menu--social">
-					<div class="btn btn--social btn--facebook fb-share-button" href="https://www.facebook.com/dialog/share?app_id=211536162517366&display=popup&href=http://ricominten.github.io/admire-my-profile-pic/&redirect_uri=http://ricominten.github.io/admire-my-profile-pic/&hashtag=admiremyprofilepic&quote=Hey, look at my glorious profile picture!" data-layout="link" data-mobile-iframe="false"><img src="img/facebook.png" alt="Share to Facebook"></div>
+					<div class="btn btn--social btn--facebook fb-share-button" data-layout="link" data-mobile-iframe="false"><img src="img/facebook.png" alt="Share to Facebook"></div>
 					<a class="btn btn--social btn--instagram" href="https://www.instagram.com/" ><img src="img/instagram.png" alt="Share to Instagram"></a>
 					<br class="show--mobile">
 					<a class="btn btn--social btn--twitter" href="http://ricominten.github.io/admire-my-profile-pic/" data-title="Hey, look at my glorious profile picture!" data-hashtags="admiremyprofilepic"><img src="img/twitter.png" alt="Share to Twitter"></a>
@@ -119,7 +119,9 @@
 	    $('.btn--facebook').click(function(e){
 		    FB.ui({
 				method: 'share',
-			  	href: 'https://developers.facebook.com/docs/',
+			  	href:'http://ricominten.github.io/admire-my-profile-pic/',
+			  	hashtag:'#admiremyprofilepic',
+			  	quote:'Hey, look at my glorious profile picture!'
 			}, function(response){});
 		});
 
