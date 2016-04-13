@@ -62,10 +62,10 @@ h1 {
 	transform: translate(-50%, -50%) rotate(90deg);
 }
 
-.container button img {
+/*.container button img {
 	width: 100%;
 	height: auto;
-}
+}*/
 
 .container .redo, .container .actions  {
 	border: none;
@@ -161,6 +161,18 @@ h1 {
 	margin-bottom: 15px;
 }
 
+.upload {
+	position: absolute;
+	width: 150px;
+	height:50px;
+    padding: 10px 0;
+	top: 50%;
+	left: 50%;
+	-webkit-transform: translate(-50%,-100%);
+	transform: translate(-50%,-100%);
+	overflow: hidden;
+}
+
 .btn {
 	border: none;
 	background: transparent;
@@ -168,24 +180,33 @@ h1 {
 	cursor: pointer;
 }
 
-.btn--upload {
+.btn--ufile, .btn--uplfb, .btn--upltw  {
 	position: absolute;
-	top: 50%;
-	left: 50%;
-	-webkit-transform: translate(-50%,-100%);
-	transform: translate(-50%,-100%);
-	overflow: hidden;
-    padding: 10px;
+	top: 0;
+	left: 50px;
+    padding: 0;
     z-index: 9;
+    -webkit-transition: all 0.3s ease;
+	transition: all 0.3s ease;
 }
 
 .btn--upload img {
 	width: 50px;
 	height: auto;
+	float: left;
 }
 
-.btn--upload input[type="file"]{
+.upload.open .btn--ufile {
+	left: 0;
+}
+
+.upload.open .btn--upltw {
+	left: 100px;
+}
+
+.btn--upload--input{
 	position: absolute;
+	display: none;
     top: 0;
     left: 0;
     width: 70px;
@@ -286,7 +307,7 @@ canvas {
 		padding: 0 0 10px 0;
 	}
 
-	.btn--upload {
+	.upload {
 		-webkit-transform: translate(-50%,-75%);
     	transform: translate(-50%,-75%);
 	}

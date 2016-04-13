@@ -143,8 +143,43 @@ $(function() {
 	$('.js-closeMenu').click(function(){
 		$('.js-menu').slideToggle();
 	})
-	
 
+
+	/************************ Twitter Share ************************/
+
+    $('.btn--twitter').click(function(e){
+     
+        e.preventDefault();
+     
+        //Get the link variables
+        var loc = $(this).attr('href');
+        var title  = encodeURIComponent($(this).attr('data-title'));
+        var hashtags = encodeURIComponent($(this).attr('data-hashtags'));
+     
+        //Trigger a new window with the Twitter dialog in the middle of the page
+        window.open('http://twitter.com/share?url=' + loc + '&text=' + title + '&hashtags=' + hashtags + '&', 'twitterwindow', 'height=450, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
+     
+    });
+
+
+    /************************ Facebook Share ************************/
+
+    $('.btn--facebook').click(function(e){
+	    FB.ui({
+			method: 'share',
+		  	href:'http://ricominten.github.io/admire-my-profile-pic/',
+		  	hashtag:'#admiremyprofilepic',
+		  	quote:'Hey, look at my glorious profile picture!'
+		}, function(response){});
+	});
+
+
+    /************************ Upload Files ************************/
+
+    $('.btn--ufile').click(function(e){
+    	$('.js-upload').addClass('open');
+    	$('.btn--upload--input').show();
+    });
 
 
 });

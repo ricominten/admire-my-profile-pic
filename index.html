@@ -59,10 +59,15 @@
 			<img id="js-bgFrameNew" class="bg-new" src="img/bg-new.png">
 			<div class="bg-fill js-bgNew" class="result"></div>
 
-			<button class="btn btn--upload">
-				<img src="img/upload.png">
-				<input type="file" onchange="ValidateSingleInput(this), renderFile()"><br>
-			</button>
+			<div class="upload js-upload">
+				
+				<button class="btn btn--upload btn--uplfb"><img src="img/upload-facebook.png" alt="Upload Facebook profile picture"></button>
+				<button class="btn btn--upload btn--upltw"><img src="img/upload-twitter.png" alt="Upload Twitter profile picture"></button>
+				<button class="btn btn--upload btn--ufile">
+					<img src="img/upload.png">
+					<input class="btn--upload--input" type="file" onchange="ValidateSingleInput(this), renderFile()"><br>
+				</button>
+			</div>
 
 			<div class="menu js-menu">
 				<button class="btn btn--close js-closeMenu"><img src="img/x.png" alt="Close Menu"></button>
@@ -79,53 +84,11 @@
 					<p> Build <span>Rico Minten</span></p>
 				</div>
 			</div>
-		</div>
-
-		
-
-
-		
-	</div>
-
-	
+		</div>	
+	</div>	
 	<canvas id="canvas" width="640" height="640"></canvas>
-
-
-
-
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
-		<script>
-		/************************ Twitter Share ************************/
-
-	    $('.btn--twitter').click(function(e){
-	     
-	        e.preventDefault();
-	     
-	        //Get the link variables
-	        var loc = $(this).attr('href');
-	        var title  = encodeURIComponent($(this).attr('data-title'));
-	        var hashtags = encodeURIComponent($(this).attr('data-hashtags'));
-	     
-	        //Trigger a new window with the Twitter dialog in the middle of the page
-	        window.open('http://twitter.com/share?url=' + loc + '&text=' + title + '&hashtags=' + hashtags + '&', 'twitterwindow', 'height=450, width=550, top='+($(window).height()/2 - 225) +', left='+$(window).width()/2 +', toolbar=0, location=0, menubar=0, directories=0, scrollbars=0');
-	     
-	    });
-
-
-	    /************************ Facebook Share ************************/
-
-	    $('.btn--facebook').click(function(e){
-		    FB.ui({
-				method: 'share',
-			  	href:'http://ricominten.github.io/admire-my-profile-pic/',
-			  	hashtag:'#admiremyprofilepic',
-			  	quote:'Hey, look at my glorious profile picture!'
-			}, function(response){});
-		});
-
-
-	</script>
 </body>
 </html>
