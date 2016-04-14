@@ -1,41 +1,19 @@
 	var combinedImage;
 
-	function renderFile() {
+	function inputFile() {
+		var file    = document.querySelector('input[type=file]').files[0];
+	}
+
+	function readInputFile() {
 		//var preview = document.querySelector('.preview');
 		var file    = document.querySelector('input[type=file]').files[0];
 		var reader  = new FileReader();
 
 		reader.onloadend = function () {
-
-
 		    window.imageLoaded = reader.result;
-
 		    if(isValid){
-		    	document.querySelector('.btn--upload').style.display = 'none';
-
-			    var frame = document.querySelector('.js-bgNew');
-				var imageFrame = document.getElementById('js-bgFrameNew');   		
-		   		var canvas = document.getElementById('canvas');
-				var context = canvas.getContext('2d');
-				var profileImage = new Image();
-
-				profileImage.onload = function() {
-				  context.drawImage(this, 160, 110, 320, 320);
-				  context.drawImage(imageFrame, 0, 0, 640, 640);
-				  combinedImage = canvas.toDataURL("image/png");
-				  frame.innerHTML = '<img class="bg-fill" src="' + combinedImage + '" width="150" height="100"/>';
-				}
-
-				context.clearRect(0, 0, canvas.width, canvas.height);
-
-				var showButtons = window.showButtons = document.getElementsByClassName('js-show');
-				for (var i = showButtons.length - 1; i >= 0; i--) {
-					showButtons[i].style.visibility = 'visible';     // Show
-				};
-				
-				profileImage.src = window.imageLoaded;
+		    	renderFile(window.imageLoaded);
 			}
-
 			isValid = false;
 		}
 
@@ -71,6 +49,35 @@
 	    isValid = true;
 	}
 
+	function renderFile(pictureUrl) {
+		document.querySelector('.upload').style.display = 'none';
+
+	    var frame = document.querySelector('.js-bgNew');
+		var imageFrame = document.getElementById('js-bgFrameNew');   		
+   		var canvas = document.getElementById('canvas');
+		var context = canvas.getContext('2d');
+		var profileImage = new Image();
+
+		console.log(profileImage)
+
+
+		profileImage.onload = function() {
+		  	context.drawImage(this, 160, 110, 320, 320);
+		  	context.drawImage(imageFrame, 0, 0, 640, 640);
+		  	combinedImage = canvas.toDataURL("image/png");
+		  	frame.innerHTML = '<img class="bg-fill" src="' + combinedImage + '" width="640" height="640"/>';
+		}
+
+		context.clearRect(0, 0, canvas.width, canvas.height);
+
+		var showButtons = window.showButtons = document.getElementsByClassName('js-show');
+		for (var i = showButtons.length - 1; i >= 0; i--) {
+			showButtons[i].style.visibility = 'visible';     // Show
+		};
+		profileImage.setAttribute('crossOrigin', 'anonymous');
+		profileImage.src = pictureUrl;
+	}
+
 
 	function downloadImage(){
 		var a = document.createElement('a');
@@ -82,7 +89,7 @@
 	}
 
 	function redoUpload() {
-		document.querySelector('.btn--upload').style.display = 'block';
+		document.querySelector('.upload').style.display = 'block';
 	}
 
 
@@ -180,6 +187,68 @@ $(function() {
     	$('.js-upload').addClass('open');
     	$('.btn--upload--input').show();
     });
+
+    $('.btn--uplfb').click(function(e){
+		/*FB.login(function(response) {
+		   	if (response.authResponse) {
+		     	console.log('Welcome!  Fetching your information.... ');
+		     	FB.api('/me', function(response) {
+		       		console.log('Good to see you, ' + response.name + '.');
+		       		FB.logout(function(response) {
+		         		console.log('Logged out.');
+		       		});
+		     	});
+		   	} else {
+		     	console.log('User cancelled login or did not fully authorize.');
+		   	}
+		}, {scope: 'email'});*/
+		checkLoginState();    });
+
+    function getFbPicture() {
+    	FB.api(
+		    "/me/picture?width=300",
+		    function (response) {
+		      	if (response && !response.error) {
+		        	/* handle the result */
+		        	console.log(response.data.url)
+		        	renderFile(response.data.url);
+		      	}
+		    }
+		);
+    }
+
+    function testAPI() {
+	    console.log('Welcome!  Fetching your information.... ');
+	    FB.api('/me', function(response) {
+	      	console.log('Successful login for: ' + response.name);
+	      	document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
+	    });
+	}
+
+	function statusChangeCallback(response) {
+	    console.log('statusChangeCallback');
+	    console.log(response);
+	    // The response object is returned with a status field that lets the app know the current login status of the person.
+	    // Full docs on the response object can be found in the documentation for FB.getLoginStatus().
+    	if (response.status === 'connected') {
+      		// Logged into your app and Facebook.
+      		testAPI();
+			getFbPicture();
+    	} else if (response.status === 'not_authorized') {
+      	// The person is logged into Facebook, but not your app.
+      	document.getElementById('status').innerHTML = 'Please log ' + 'into this app.';
+    	} else {
+	      	// The person is not logged into Facebook, so we're not sure if they are logged into this app or not.
+	      	document.getElementById('status').innerHTML = 'Please log ' + 'into Facebook.';
+    	}
+  	}
+
+	// This function is called when someone finishes with the Login Button.  See the onlogin handler attached to it in the sample code below.
+  	function checkLoginState() {
+    	FB.getLoginStatus(function(response) {
+      		statusChangeCallback(response);
+    	});
+  	}
 
 
 });

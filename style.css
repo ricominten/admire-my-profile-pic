@@ -239,6 +239,13 @@ h1 {
 	width: 100% !important;
 }
 
+.fb_iframe_widget {
+	display: none !important;
+}
+.status {
+	display: none !important;
+}
+
 
 canvas {
 	display: none;

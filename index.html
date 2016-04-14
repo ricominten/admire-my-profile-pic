@@ -24,9 +24,12 @@
 <body>
 	<div id="fb-root"></div>
     <script>
+	    // This is called with the results from from FB.getLoginStatus().
+	  	
 	 	window.fbAsyncInit = function() {
 			FB.init({
 			    appId      : '211536162517366',
+			    cookie     : true,
 			    xfbml      : true,
 			    version    : 'v2.6'
 			});	
@@ -39,7 +42,7 @@
 	     	js.src = "//connect.facebook.net/en_US/sdk.js";
 	     	fjs.parentNode.insertBefore(js, fjs);
 	   	}(document, 'script', 'facebook-jssdk'));
-   	
+
 	</script>
 
 	
@@ -61,11 +64,14 @@
 
 			<div class="upload js-upload">
 				
-				<button class="btn btn--upload btn--uplfb"><img src="img/upload-facebook.png" alt="Upload Facebook profile picture"></button>
+				<button class="btn btn--upload btn--uplfb" >
+					<img src="img/upload-facebook.png" alt="Upload Facebook profile picture">
+					<fb:login-button scope="public_profile" onlogin="checkLoginState();"></fb:login-button>
+				</button>
 				<button class="btn btn--upload btn--upltw"><img src="img/upload-twitter.png" alt="Upload Twitter profile picture"></button>
 				<button class="btn btn--upload btn--ufile">
 					<img src="img/upload.png">
-					<input class="btn--upload--input" type="file" onchange="ValidateSingleInput(this), renderFile()"><br>
+					<input class="btn--upload--input" type="file" onchange="ValidateSingleInput(this), readInputFile()"><br>
 				</button>
 			</div>
 
@@ -85,10 +91,29 @@
 				</div>
 			</div>
 		</div>	
-	</div>	
+	</div>
+	
+	<div id="status"></div>	
+	<div id="twitter-wjs"></div>
 	<canvas id="canvas" width="640" height="640"></canvas>
 
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 	<script type="text/javascript" src="main.js"></script>
+	<script>
+		window.twttr = (function(d, s, id) {
+		  	var js, fjs = d.getElementsByTagName(s)[0],
+		    t = window.twttr || {};
+		  	if (d.getElementById(id)) return t;
+		  	js = d.createElement(s);
+		  	js.id = id;
+		  	js.src = "https://platform.twitter.com/widgets.js";
+		  	fjs.parentNode.insertBefore(js, fjs);
+	  		t._e = [];
+		  	t.ready = function(f) {
+		    	t._e.push(f);
+		  	};
+	  		return t;
+		}(document, "script", "twitter-wjs"));
+	</script>
 </body>
 </html>
